@@ -42,7 +42,7 @@ python query_online.py -query database/001_accordion_image_0001.jpg -index featu
 
 ### 更新
 
-- 针对近期有小伙伴反映的keras版本的问题，已将其进行到最新版本，并且特征提取代码大幅精简。
+- keras更新到2.1.5版本，并且特征提取代码大幅精简。
 - 显示检索得到的图片， 可自由定义查询图片及检索图片集
 - 2018-04-11 修改了Python2.7环境下的原项目，使之支持Python3.6环境下的运行;解决了字符编码的问题，使之能够支持UTF-8编码方式;
 
