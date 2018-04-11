@@ -4,11 +4,11 @@
 
 ```python
 In [1]: import keras
-Using Theano backend.
+Using TensorFlow backend.
 ```
 
-keras 2.0.1 及 2.0.5 版本均经过测试可用。推荐Python 2.7，Python 3.x的未经过测试。
-
+keras 2.1.5 经过测试可用。
+修改后已支持Python3.6环境。
 此外需要numpy, matplotlib, os, h5py, argparse. 推荐使用anaconda安装
 
 ### 使用
@@ -44,8 +44,9 @@ python query_online.py -query database/001_accordion_image_0001.jpg -index featu
 
 - 针对近期有小伙伴反映的keras版本的问题，已将其进行到最新版本，并且特征提取代码大幅精简。
 - 显示检索得到的图片， 可自由定义查询图片及检索图片集
+2018-04-11 修改了Python2.7环境下的原项目，使之支持Python3.6环境下的运行;解决了字符编码的问题，使之能够支持UTF-8编码方式;
 
-### Goal
+### 目标
 
 重新用flask写CNN-Web-Demo-for-Image-Retrieval，并使用keras使它支持在线上传功能。
 
