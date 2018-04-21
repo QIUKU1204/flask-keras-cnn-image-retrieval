@@ -24,7 +24,7 @@ keras 2.1.5 经过测试可用。
 ```sh
 ├── database 图像数据集
 ├── extract_cnn_vgg16_keras.py 使用预训练vgg16模型提取图像特征
-|── index.py 对图像集提取特征，建立索引
+|── creat_index.py 对图像集提取特征，建立索引
 ├── query_online.py 库内搜索
 └── README.md
 ```
@@ -32,11 +32,11 @@ keras 2.1.5 经过测试可用。
 #### 示例
 
 ```sh
-# 对database文件夹内图片进行特征提取，建立索引文件CNN_extract_image_feature.h5
-python index.py -database database -index CNN_extract_image_feature.h5
+# 对database文件夹内图片进行特征提取，建立索引文件CNN_extracted_image_feature.h5
+python index.py -database database -index CNN_extracted_image_feature.h5
 
-# 将001_accordion_image_0001.jpg作为Query图片，在database内使用CNN_extract_image_feature.h5进行相似图片查找，并显示最相似的3张图片
-python query_online.py -query database/001_accordion_image_0001.jpg -index CNN_extract_image_feature.h5 -result database
+# 将1-001.jpg作为Query图片，在database内使用CNN_extracted_image_feature.h5进行相似图片查找，并显示最相似的3张图片
+python query_online.py -query database/1-001.jpg -index CNN_extracted_image_feature.h5 -result database
 ```
 
 
