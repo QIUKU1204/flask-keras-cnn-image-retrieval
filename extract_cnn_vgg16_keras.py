@@ -4,6 +4,7 @@
 import numpy as np
 from keras.applications.imagenet_utils import decode_predictions
 from numpy import linalg as LA
+from PIL import Image
 from keras.applications.vgg16 import VGG16
 from keras.preprocessing import image
 from keras.applications.vgg16 import preprocess_input
@@ -15,7 +16,7 @@ class VGGNet:
 		# pooling: 'max' or 'avg' -- 全局平均池化或全局最大值池化
 		# input_shape: (width, height, 3), width and height should >= 48
 		# include_top=False -- 不保留顶部的3个全连接层
-		self.input_shape = [224,224,3]
+		self.input_shape = [224, 224, 3]
 		self.weight = 'imagenet'
 		self.pooling = 'max'
 		self.model = VGG16(weights=self.weight,
@@ -30,24 +31,25 @@ class VGGNet:
 	Output normalized feature vector
 	'''
 
-	def extract_feature(self, img_path):
+	def extract_feature(self, img_path):  # img or img_path
 		img = image.load_img(img_path, target_size=(self.input_shape[0], self.input_shape[1]))
+		img = img.resize(size=(self.input_shape[0], self.input_shape[1]))
 		img = image.img_to_array(img)
-		print(type(img), "after img_to_array(img):", img.shape)
+		print(type(img), "img_to_array(img):", img.shape)
 		img = np.expand_dims(img, axis=0)
-		print(type(img), "after expand_dims(img):",  img.shape)
+		print(type(img), "expand_dims(img):",  img.shape)
 
 		'''preprocess_input()函数完成图像数据预处理工作
 		   图像数据预处理能够提高算法的运行效果
 		   mode='caffe' or mode='tf' '''
 		img = preprocess_input(img, mode='caffe')
-		print("after preprocess_input(img):", img.shape)
+		print("preprocess_input(img):", img.shape)
 
 		'''Generates output predictions for the input samples.
 		   Returns Numpy array(s) of predictions. 
 		   predict方法生成预测分类结果predictions'''
 		feat = self.model.predict(img)
-		print("after predict(img):", feat.shape)
+		print("predict(img):", feat.shape)
 
 		'''decode_predictions函数将预测分类结果predictions
 		   解码为易读的键值对：标签号、标签名以及该标签的概率'''

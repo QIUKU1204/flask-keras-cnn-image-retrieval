@@ -7,7 +7,7 @@ import argparse
 from extract_cnn_vgg16_keras import VGGNet
 import os
 
-# hide tensorflow warnings
+# to hide tensorflow warnings
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 ''' FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. 
@@ -15,8 +15,8 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
     from ._conv import register_converters as _register_converters'''
 # TODO: resolve this FutureWarning
 
-'''command line arguments parse procedure.
-   returns a dictionary of command line argument'''
+'''command line arguments parse procedure.'''
+'''returns a dictionary of command line argument'''
 ap = argparse.ArgumentParser()
 ap.add_argument("-database", required=True,
                 help="Path to database which contains images to be indexed")
@@ -47,8 +47,8 @@ if __name__ == "__main__":
 	model = VGGNet()
 	for i, img_path in enumerate(img_list):
 		img_feat = model.extract_feature(img_path)
-		'''os.path.split(PATH)函数以PATH参数的最后一个'\'作为分隔符，
-		   返回目录名和文件名组成的元组,索引0为目录名，索引1则为文件名'''
+		# os.path.split(PATH)函数以PATH参数的最后一个'\'作为分隔符，
+		# 返回目录名和文件名组成的元组,索引0为目录名，索引1则为文件名
 		img_name = os.path.split(img_path)[1]
 		feats.append(img_feat)
 		names.append(img_name)
@@ -68,10 +68,8 @@ if __name__ == "__main__":
 	feats_ascii = []
 
 	# create_dataset method only accepts ascii encoding character
-	names_ascii = []
-	for element in names:
-		# encode: str -> bytes
-		names_ascii.append(str(element).encode("ascii"))
+	# encode: str -> bytes
+	names_ascii = [str(name).encode('ascii', 'ignore') for name in names]
 	h5f.create_dataset('dataset_1', data=feats)
 	h5f.create_dataset('dataset_2', data=names_ascii)
 	h5f.close()
