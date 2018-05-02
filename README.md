@@ -50,7 +50,7 @@ python query_local.py -query database-few/1-001.jpg -index CNN_extracted_image_f
 
 ### 目标
 
-重新用flask写CNN-Web-Demo-for-Image-Retrieval，使它支持在线上传功能。
+重新用flask写flask-web-image-retrieve，使它支持在线上传功能。
 
 ### 论文推荐
 
